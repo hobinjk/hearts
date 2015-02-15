@@ -1,11 +1,11 @@
-var Stats = require('Stats')
-  , properties = require('../properties');
+var Stats = require('Stats');
+var properties = require('../properties');
 
-module.exports = function(game) {
+function BootState(game) {
 
   var boot = {};
 
-  boot.create = function () {
+  boot.create = function() {
 
     if (properties.showStats) {
       addStats();
@@ -27,11 +27,14 @@ module.exports = function(game) {
 
     document.body.appendChild(stats.domElement);
 
-    setInterval(function () {
+    setInterval(function() {
       stats.begin();
       stats.end();
     }, 1000 / 60);
   }
 
   return boot;
-};
+}
+
+/** export state */
+module.exports = BootState;
