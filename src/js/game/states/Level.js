@@ -39,8 +39,9 @@ Level.prototype.generate = function() {
     }
   }
 
-  var goalPos = new Vec2(1 + Utils.randInt(this.width - 2),
-                         1 + Utils.randInt(this.height - 2));
+  // Give it a 1 buffer away from the walls because the walls are easymode
+  var goalPos = new Vec2(2 + Utils.randInt(this.width - 4),
+                         2 + Utils.randInt(this.height - 4));
 
   this.setBlockAt(goalPos, Block.GOAL);
 
