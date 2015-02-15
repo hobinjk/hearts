@@ -51,7 +51,7 @@ Level.prototype.generate = function() {
   var step = 0;
   var failures = 0;
 
-  while (step < 5 && failures < 16) {
+  while (step < 25 && failures < 1600) {
     var direction = Utils.randElement(Vec2.Direction.ALL);
     var oppositeDirection = Vec2.getOppositeDirection(direction);
     var stopPos = currentPos.add(oppositeDirection);
@@ -78,6 +78,9 @@ Level.prototype.generate = function() {
 
     this.markEmptyUntil(currentPos, emptyPos);
     currentPos = emptyPos;
+
+    step++;
+    failures = 0;
   }
 
   var finalBlock = this.getBlockAt(currentPos);
