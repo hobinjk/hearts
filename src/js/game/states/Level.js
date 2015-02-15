@@ -64,19 +64,18 @@ Level.prototype.generate = function() {
     this.setBlockAt(stopPos, Block.WALL);
 
     var emptyPos = this.getRandomEmptyInDirection(currentPos, direction);
-    if (!emptyPos) {
+    if (!emptyPos || this.getBlockAt(emptyPos) === Block.GOAL) {
       failures++;
       this.setBlockAt(stopPos, stopBlock);
       continue;
     }
-    emptyPos = emptyPos.add(direction);
-    if (this.getBlockAt(emptyPos) === Block.WALL) {
+    if (this.getBlockAt(emptyPos.add(direction)) === Block.WALL) {
       failures++;
       this.setBlockAt(stopPos, stopBlock);
       continue;
     }
 
-    this.markEmptyUntil(currentPos, emptyPos);
+    this.markEmptyUntil(currentPos, emptyPos.add(direction));
     currentPos = emptyPos;
 
     step++;
